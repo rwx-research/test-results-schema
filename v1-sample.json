@@ -1,12 +1,9 @@
 {
   "$schema": "./v1.json",
-  "derivedFrom": [
-    {
-      "originalFilePath": "./some/path/to/file.json",
-      "contents": "base64encodedoriginalfile",
-      "groupNumber": 1
-    }
-  ],
+  "framework": {
+    "language": "Ruby",
+    "kind": "RSpec"
+  },
   "summary": {
     "status": { "kind": "failed" },
     "tests": 3,
@@ -93,6 +90,13 @@
         "file": "./some/path/to/file.rb",
         "line": 10
       }
+    }
+  ],
+  "derivedFrom": [
+    {
+      "originalFilePath": "./some/path/to/file.json",
+      "contents": "base64encodedoriginalfile",
+      "groupNumber": 1
     }
   ]
 }
