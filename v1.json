@@ -1,0 +1,79 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "description": "v1 of RWX's test results schema",
+  "type": "object",
+  "required": ["framework", "summary", "tests"],
+  "properties": {
+    "framework": { "$ref": "#/$defs/framework" },
+    "summary": { "$ref": "./v1/summary.json" },
+    "tests": {
+      "description": "The tests in a test suite",
+      "type": "array",
+      "items": { "$ref": "./v1/test.json" }
+    },
+    "otherErrors": {
+      "description": "Other errors which ocurred outside of a test",
+      "type": "array",
+      "items": { "$ref": "./v1/other-error.json" }
+    },
+    "derivedFrom": {
+      "description": "The original test results files from which these test results were derived",
+      "type": "array",
+      "items": { "$ref": "./v1/original-test-results.json" }
+    }
+  },
+
+  "$defs": {
+    "framework": {
+      "description": "The test framework which produced these results",
+      "oneOf": [
+        { "$ref": "#/$defs/frameworks/Ruby/RSpec" },
+        { "$ref": "#/$defs/frameworks/.NET/xUnit" },
+        { "$ref": "#/$defs/frameworks/JavaScript/Jest" },
+        { "$ref": "#/$defs/frameworks/other" }
+      ]
+    },
+    "frameworks": {
+      "Ruby": {
+        "RSpec": {
+          "type": "object",
+          "required": ["language", "kind"],
+          "properties": {
+            "language": { "type": "string", "enum": ["Ruby"]},
+            "kind": { "type": "string", "enum": ["RSpec"]}
+          }
+        }
+      },
+      ".NET": {
+        "xUnit": {
+          "type": "object",
+          "required": ["language", "kind"],
+          "properties": {
+            "language": { "type": "string", "enum": [".NET"]},
+            "kind": { "type": "string", "enum": ["xUnit"]}
+          }
+        }
+      },
+      "JavaScript": {
+        "Jest": {
+          "type": "object",
+          "required": ["language", "kind"],
+          "properties": {
+            "language": { "type": "string", "enum": ["JavaScript"]},
+            "kind": { "type": "string", "enum": ["Jest"]}
+          }
+        }
+      },
+      "other": {
+        "type": "object",
+        "required": ["language", "kind", "providedLanguage", "providedKind"],
+        "properties": {
+          "language": { "type": "string", "enum": ["other"]},
+          "kind": { "type": "string", "enum": ["other"]},
+          "providedLanguage": { "type": "string"},
+          "providedKind": { "type": "string"}
+        }
+      }
+    }
+  }
+}

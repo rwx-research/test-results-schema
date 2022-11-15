@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "description": "An error that occurred outside of a test",
+  "type": "object",
+  "required": ["message"],
+  "properties": {
+    "backtrace": { "$ref": "#/$defs/backtrace" },
+    "exception": { "$ref": "#/$defs/exception" },
+    "location": { "$ref": "#/$defs/location" },
+    "message": { "$ref": "#/$defs/message" },
+    "meta": { "$ref": "#/$defs/meta" }
+  },
+
+  "$defs": {
+    "location": {
+      "description": "The file location of this error. Line and Column are one-indexed.",
+      "examples": [
+        {
+          "file": "./some/path/to/file.rb",
+          "line": 10,
+          "column": 4
+        },
+        { "file": "./some/path/to/file.rb" },
+        {
+          "file": "./some/path/to/file.rb",
+          "line": 10
+        }
+      ],
+      "type": "object",
+      "required": ["file"],
+      "properties": {
+        "file": { "type": "string" },
+        "line": { "type": "number", "minimum": 1 },
+        "column": { "type": "number", "minimum": 1 }
+      }
+    },
+    "meta": {
+      "description": "Additional framework/library-specific metadata",
+      "type": "object"
+    },
+    "exception": { "type": "string" },
+    "message": { "type": "string" },
+    "backtrace": { "type": "array", "items": { "type": "string" } }
+  }
+}

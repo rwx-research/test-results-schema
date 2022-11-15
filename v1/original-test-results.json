@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "description": "An original test results file from which the RWX test results schema was derived",
+  "type": "object",
+  "required": ["originalFilePath", "contents", "groupNumber"],
+  "properties": {
+    "originalFilePath": { "$ref": "#/$defs/originalFilePath" },
+    "contents": { "$ref": "#/$defs/contents" },
+    "groupNumber": { "$ref": "#/$defs/groupNumber" }
+  },
+
+  "$defs": {
+    "originalFilePath": {
+      "description": "The original filepath where these results were found",
+      "examples": ["./some/path/to/file.json"],
+      "type": "string",
+      "minLength": 1
+    },
+    "contents": {
+      "description": "Base64 encoded contents of the original file",
+      "type": "string"
+    },
+    "groupNumber": {
+      "description": "The group this file was generated in. Files will be ordered by group number, merged in groups, and then applied on top of one another in order of group number.",
+      "type": "number",
+      "minimum": 1
+    }
+  }
+}
