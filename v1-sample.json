@@ -85,9 +85,9 @@
     }
   ],
   "otherErrors": [
-    {},
     { "message": "something broke" },
     {
+      "message": "An error occurred",
       "exception": "FooError",
       "location": {
         "file": "./some/path/to/file.rb",

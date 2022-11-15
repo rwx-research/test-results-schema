@@ -2,6 +2,7 @@
   "$schema": "http://json-schema.org/schema",
   "description": "An error that occurred outside of a test",
   "type": "object",
+  "required": ["message"],
   "properties": {
     "backtrace": { "$ref": "#/$defs/backtrace" },
     "exception": { "$ref": "#/$defs/exception" },
