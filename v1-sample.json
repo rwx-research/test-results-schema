@@ -10,6 +10,7 @@
   "summary": {
     "status": { "kind": "failed" },
     "tests": 3,
+    "otherErrors": 3,
     "retries": 1,
     "canceled": 0,
     "failed": 1,
@@ -17,7 +18,7 @@
     "quarantined": 1,
     "skipped": 0,
     "successful": 1,
-    "timed_out": 0,
+    "timedOut": 0,
     "todo": 0
   },
   "tests": [
@@ -81,6 +82,17 @@
           }
         }
       ]
+    }
+  ],
+  "otherErrors": [
+    {},
+    { "message": "something broke" },
+    {
+      "exception": "FooError",
+      "location": {
+        "file": "./some/path/to/file.rb",
+        "line": 10
+      }
     }
   ]
 }

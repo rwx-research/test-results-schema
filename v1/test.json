@@ -70,7 +70,7 @@
       }
     },
     "lineage": {
-      "description": "The distinct components that comprise the definition",
+      "description": "The qualified scope from which the name is derived",
       "examples": [["Sky::Moon", "when it's dark out", "is bright"]],
       "type": "array",
       "items": { "type": "string" }
@@ -98,7 +98,7 @@
         { "$ref": "#/$defs/statuses/pended" },
         { "$ref": "#/$defs/statuses/skipped" },
         { "$ref": "#/$defs/statuses/successful" },
-        { "$ref": "#/$defs/statuses/timed_out" },
+        { "$ref": "#/$defs/statuses/timedOut" },
         { "$ref": "#/$defs/statuses/todo" },
         { "$ref": "#/$defs/statuses/quarantined" }
       ]
@@ -118,7 +118,7 @@
           "kind": { "type": "string", "enum": ["failed"] },
           "exception": { "type": "string" },
           "message": { "type": "string" },
-          "backtrace": { "type": "string" }
+          "backtrace": { "type": "array", "items": { "type": "string" } }
         }
       },
       "pended": {
@@ -145,11 +145,11 @@
         "required": ["kind"],
         "properties": { "kind": { "type": "string", "enum": ["successful"] } }
       },
-      "timed_out": {
+      "timedOut": {
         "description": "A timed out test",
         "type": "object",
         "required": ["kind"],
-        "properties": { "kind": { "type": "string", "enum": ["timed_out"] } }
+        "properties": { "kind": { "type": "string", "enum": ["timedOut"] } }
       },
       "todo": {
         "description": "A test that has not yet been implemented",
@@ -173,7 +173,7 @@
               { "$ref": "#/$defs/statuses/pended" },
               { "$ref": "#/$defs/statuses/skipped" },
               { "$ref": "#/$defs/statuses/successful" },
-              { "$ref": "#/$defs/statuses/timed_out" },
+              { "$ref": "#/$defs/statuses/timedOut" },
               { "$ref": "#/$defs/statuses/todo" }
             ]
           }
