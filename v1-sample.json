@@ -7,6 +7,19 @@
       "groupNumber": 1
     }
   ],
+  "summary": {
+    "status": { "kind": "failed" },
+    "tests": 3,
+    "retries": 1,
+    "canceled": 0,
+    "failed": 1,
+    "pended": 0,
+    "quarantined": 1,
+    "skipped": 0,
+    "successful": 1,
+    "timed_out": 0,
+    "todo": 0
+  },
   "tests": [
     {
       "id": "./spec/some/path/foo_spec.rb:12",

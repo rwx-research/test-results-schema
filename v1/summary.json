@@ -1,0 +1,99 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "description": "A summary of the results",
+  "type": "object",
+  "required": [
+    "status",
+    "tests",
+    "retries",
+    "canceled",
+    "failed",
+    "pended",
+    "quarantined",
+    "skipped",
+    "successful",
+    "timed_out",
+    "todo"
+  ],
+  "examples": [
+    {
+      "status": { "kind": "failed" },
+      "tests": 3,
+      "retries": 1,
+      "canceled": 0,
+      "failed": 1,
+      "pended": 0,
+      "quarantined": 1,
+      "skipped": 0,
+      "successful": 1,
+      "timed_out": 0,
+      "todo": 0
+    }
+  ],
+  "properties": {
+    "status": { "$ref": "#/$defs/status" },
+    "tests": { "$ref": "#/$defs/tests" },
+    "retries": { "$ref": "#/$defs/retries" },
+    "canceled": { "$ref": "#/$defs/statusAggregate" },
+    "failed": { "$ref": "#/$defs/statusAggregate" },
+    "pended": { "$ref": "#/$defs/statusAggregate" },
+    "quarantined": { "$ref": "#/$defs/statusAggregate" },
+    "skipped": { "$ref": "#/$defs/statusAggregate" },
+    "successful": { "$ref": "#/$defs/statusAggregate" },
+    "timed_out": { "$ref": "#/$defs/statusAggregate" },
+    "todo": { "$ref": "#/$defs/statusAggregate" }
+  },
+
+  "$defs": {
+    "retries": {
+      "description": "The number of tests that were retried (i.e. the number of tests with pastAttempts)",
+      "type": "number",
+      "minimum": 0
+    },
+    "status": {
+      "description": "The overall status of the test results",
+      "oneOf": [
+        { "$ref": "#/$defs/statuses/canceled" },
+        { "$ref": "#/$defs/statuses/failed" },
+        { "$ref": "#/$defs/statuses/successful" },
+        { "$ref": "#/$defs/statuses/timed_out" }
+      ]
+    },
+    "statusAggregate": {
+      "description": "Total number of tests with a given status",
+      "type": "number",
+      "minimum": 0
+    },
+    "statuses": {
+      "canceled": {
+        "description": "The tests were canceled (note: only used if the entire run was canceled, not if an individual test within the results was canceled)",
+        "type": "object",
+        "required": ["kind"],
+        "properties": { "kind": { "type": "string", "enum": ["canceled"] } }
+      },
+      "failed": {
+        "description": "The tests failed",
+        "type": "object",
+        "required": ["kind"],
+        "properties": { "kind": { "type": "string", "enum": ["failed"] } }
+      },
+      "successful": {
+        "description": "The tests were successful",
+        "type": "object",
+        "required": ["kind"],
+        "properties": { "kind": { "type": "string", "enum": ["successful"] } }
+      },
+      "timed_out": {
+        "description": "The tests timed out (note: only used if the entire run timed out, not if an individual test within the results timed out)",
+        "type": "object",
+        "required": ["kind"],
+        "properties": { "kind": { "type": "string", "enum": ["timed_out"] } }
+      }
+    },
+    "tests": {
+      "description": "The total number of tests that were run (i.e. the number of tests with pastAttempts)",
+      "type": "number",
+      "minimum": 0
+    }
+  }
+}
