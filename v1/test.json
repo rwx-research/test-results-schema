@@ -28,13 +28,19 @@
         "status": { "$ref": "#/$defs/status" },
         "stderr": { "$ref": "#/$defs/stderr" },
         "stdout": { "$ref": "#/$defs/stdout" },
-        "timestamp": { "$ref": "#/$defs/timestamp" }
+        "startedAt": { "$ref": "#/$defs/startedAt" },
+        "finishedAt": { "$ref": "#/$defs/finishedAt" }
       }
     },
     "duration": {
       "description": "How long the test took to run (in seconds, with optional fractional precision)",
       "type": ["number", "null"],
       "minimum": 0
+    },
+    "finishedAt": {
+      "description": "When the test finished",
+      "type": "string",
+      "format": "date-time"
     },
     "id": {
       "description": "An identifier for the test, ideally unique to this run.",
@@ -78,6 +84,11 @@
       "examples": ["Sky::Moon when it's dark out is bright"],
       "type": "string",
       "minLength": 1
+    },
+    "startedAt": {
+      "description": "When the test started",
+      "type": "string",
+      "format": "date-time"
     },
     "status": {
       "description": "The final status of a test (successful, failed, etc.)",
@@ -176,11 +187,6 @@
     "stdout": {
       "description": "Any output emitted to STDOUT",
       "type": "string"
-    },
-    "timestamp": {
-      "description": "When the test ran",
-      "type": "string",
-      "format": "date-time"
     }
   }
 }
