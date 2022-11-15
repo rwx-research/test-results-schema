@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "description": "v1 of RWX's test results schema",
+  "type": "object",
+  "required": ["tests"],
+  "properties": {
+    "derivedFrom": {
+      "description": "The original test results files from which these test results were derived",
+      "type": "array",
+      "items": { "$ref": "./v1/original-test-results.json" }
+    },
+    "tests": {
+      "description": "The tests in a test suite",
+      "type": "array",
+      "items": { "$ref": "./v1/test.json" }
+    }
+  }
+}

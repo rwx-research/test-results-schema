@@ -1,0 +1,186 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "description": "The result of running a test (one or more times)",
+  "type": "object",
+  "required": ["name", "attempt"],
+  "properties": {
+    "id": { "$ref": "#/$defs/id" },
+    "name": { "$ref": "#/$defs/name" },
+    "lineage": { "$ref": "#/$defs/lineage" },
+    "location": { "$ref": "#/$defs/location" },
+    "attempt": { "$ref": "#/$defs/attempt" },
+    "pastAttempts": {
+      "description": "Past attempts of this test (primarily useful for intra-run retries). The first attempt should be first, the most recent attempt should be last.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/attempt" }
+    }
+  },
+
+  "$defs": {
+    "attempt": {
+      "description": "Details about a single attempt of a test",
+      "type": "object",
+      "required": ["duration", "status"],
+      "examples": [{ "duration": 100.0, "status": { "kind": "failed" } }],
+      "properties": {
+        "duration": { "$ref": "#/$defs/duration" },
+        "meta": { "$ref": "#/$defs/meta" },
+        "status": { "$ref": "#/$defs/status" },
+        "stderr": { "$ref": "#/$defs/stderr" },
+        "stdout": { "$ref": "#/$defs/stdout" },
+        "timestamp": { "$ref": "#/$defs/timestamp" }
+      }
+    },
+    "duration": {
+      "description": "How long the test took to run (in seconds, with optional fractional precision)",
+      "type": ["number", "null"],
+      "minimum": 0
+    },
+    "id": {
+      "description": "An identifier for the test, ideally unique to this run.",
+      "type": "string",
+      "minLength": 1
+    },
+    "location": {
+      "description": "The file location of this test result. Line and Column are one-indexed.",
+      "examples": [
+        {
+          "file": "./some/path/to/file.rb",
+          "line": 10,
+          "column": 4
+        },
+        { "file": "./some/path/to/file.rb" },
+        {
+          "file": "./some/path/to/file.rb",
+          "line": 10
+        }
+      ],
+      "type": "object",
+      "required": ["file"],
+      "properties": {
+        "file": { "type": "string" },
+        "line": { "type": "number", "minimum": 1 },
+        "column": { "type": "number", "minimum": 1 }
+      }
+    },
+    "lineage": {
+      "description": "The distinct components that comprise the definition",
+      "examples": [["Sky::Moon", "when it's dark out", "is bright"]],
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "meta": {
+      "description": "Additional framework/library-specific metadata",
+      "type": "object"
+    },
+    "name": {
+      "description": "The full name of a test (including all namespaces, classes, nesting, etc.)",
+      "examples": ["Sky::Moon when it's dark out is bright"],
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "description": "The final status of a test (successful, failed, etc.)",
+      "oneOf": [
+        { "$ref": "#/$defs/statuses/canceled" },
+        { "$ref": "#/$defs/statuses/failed" },
+        { "$ref": "#/$defs/statuses/pended" },
+        { "$ref": "#/$defs/statuses/skipped" },
+        { "$ref": "#/$defs/statuses/successful" },
+        { "$ref": "#/$defs/statuses/timed_out" },
+        { "$ref": "#/$defs/statuses/todo" },
+        { "$ref": "#/$defs/statuses/quarantined" }
+      ]
+    },
+    "statuses": {
+      "canceled": {
+        "description": "A canceled test",
+        "type": "object",
+        "required": ["kind"],
+        "properties": { "kind": { "type": "string", "enum": ["canceled"] } }
+      },
+      "failed": {
+        "description": "A failed test",
+        "type": "object",
+        "required": ["kind"],
+        "properties": {
+          "kind": { "type": "string", "enum": ["failed"] },
+          "exception": { "type": "string" },
+          "message": { "type": "string" },
+          "backtrace": { "type": "string" }
+        }
+      },
+      "pended": {
+        "description": "A pended test",
+        "type": "object",
+        "required": ["kind"],
+        "properties": {
+          "kind": { "type": "string", "enum": ["pended"] },
+          "message": { "type": "string" }
+        }
+      },
+      "skipped": {
+        "description": "A skipped test",
+        "type": "object",
+        "required": ["kind"],
+        "properties": {
+          "kind": { "type": "string", "enum": ["skipped"] },
+          "message": { "type": "string" }
+        }
+      },
+      "successful": {
+        "description": "A successful test",
+        "type": "object",
+        "required": ["kind"],
+        "properties": { "kind": { "type": "string", "enum": ["successful"] } }
+      },
+      "timed_out": {
+        "description": "A timed out test",
+        "type": "object",
+        "required": ["kind"],
+        "properties": { "kind": { "type": "string", "enum": ["timed_out"] } }
+      },
+      "todo": {
+        "description": "A test that has not yet been implemented",
+        "type": "object",
+        "required": ["kind"],
+        "properties": {
+          "kind": { "type": "string", "enum": ["todo"] },
+          "message": { "type": "string" }
+        }
+      },
+      "quarantined": {
+        "description": "A quarantined test",
+        "type": "object",
+        "required": ["kind", "originalStatus"],
+        "properties": {
+          "kind": { "type": "string", "enum": ["quarantined"] },
+          "originalStatus": {
+            "oneOf": [
+              { "$ref": "#/$defs/statuses/canceled" },
+              { "$ref": "#/$defs/statuses/failed" },
+              { "$ref": "#/$defs/statuses/pended" },
+              { "$ref": "#/$defs/statuses/skipped" },
+              { "$ref": "#/$defs/statuses/successful" },
+              { "$ref": "#/$defs/statuses/timed_out" },
+              { "$ref": "#/$defs/statuses/todo" }
+            ]
+          }
+        }
+      }
+    },
+    "stderr": {
+      "description": "Any output emitted to STDERR",
+      "type": "string"
+    },
+    "stdout": {
+      "description": "Any output emitted to STDOUT",
+      "type": "string"
+    },
+    "timestamp": {
+      "description": "When the test ran",
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

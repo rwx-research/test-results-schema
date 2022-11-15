@@ -1,0 +1,73 @@
+{
+  "$schema": "./v1.json",
+  "derivedFrom": [
+    {
+      "originalFilePath": "./some/path/to/file.json",
+      "contents": "base64encodedoriginalfile",
+      "groupNumber": 1
+    }
+  ],
+  "tests": [
+    {
+      "id": "./spec/some/path/foo_spec.rb:12",
+      "name": "Sky::Moon when it's dark out is bright",
+      "lineage": [
+        "Sky::Moon",
+        "when it's dark out",
+        "is bright"
+      ],
+      "location": {
+        "file": "./spec/some/path/foo_spec.rb",
+        "line": 12
+      },
+      "attempt": {
+        "duration": 1.1003003,
+        "status": {
+          "kind": "successful"
+        }
+      }
+    },
+    {
+      "id": "./spec/some/path/foo_spec.rb:20",
+      "name": "Sky::Moon when it's dark out is not bright",
+      "lineage": [
+        "Sky::Moon",
+        "when it's dark out",
+        "is not bright"
+      ],
+      "location": {
+        "file": "./spec/some/path/foo_spec.rb",
+        "line": 20
+      },
+      "attempt": {
+        "duration": 1.2,
+        "status": {
+          "kind": "quarantined",
+          "originalStatus": {
+            "kind": "failed",
+            "message": "The moon is bright"
+          }
+        }
+      }
+    },
+    {
+      "name": "Sky::Moon does not exist",
+      "attempt": {
+        "duration": 1.2,
+        "timestamp": "2022-11-15T15:01:49Z",
+        "status": { "kind": "successful" },
+        "meta": { "env": "foo" }
+      },
+      "pastAttempts": [
+        {
+          "duration": 1.5,
+          "timestamp": "2022-11-15T07:01:34Z",
+          "status": {
+            "kind": "failed",
+            "message": "The moon is in the sky"
+          }
+        }
+      ]
+    }
+  ]
+}
