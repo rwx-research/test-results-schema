@@ -20,10 +20,10 @@
     "attempt": {
       "description": "Details about a single attempt of a test",
       "type": "object",
-      "required": ["duration", "status"],
-      "examples": [{ "duration": 100.0, "status": { "kind": "failed" } }],
+      "required": ["durationInNanoseconds", "status"],
+      "examples": [{ "durationInNanoseconds": 2500000000, "status": { "kind": "failed" } }],
       "properties": {
-        "duration": { "$ref": "#/$defs/duration" },
+        "durationInNanoseconds": { "$ref": "#/$defs/durationInNanoseconds" },
         "meta": { "$ref": "#/$defs/meta" },
         "status": { "$ref": "#/$defs/status" },
         "stderr": { "$ref": "#/$defs/stderr" },
@@ -32,9 +32,9 @@
         "finishedAt": { "$ref": "#/$defs/finishedAt" }
       }
     },
-    "duration": {
-      "description": "How long the test took to run (in seconds, with optional fractional precision)",
-      "type": ["number", "null"],
+    "durationInNanoseconds": {
+      "description": "How long the test took to run in nanoseconds",
+      "type": ["integer", "null"],
       "minimum": 0
     },
     "finishedAt": {
