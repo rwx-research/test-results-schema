@@ -29,6 +29,7 @@
       "oneOf": [
         { "$ref": "#/$defs/frameworks/Ruby/RSpec" },
         { "$ref": "#/$defs/frameworks/.NET/xUnit" },
+        { "$ref": "#/$defs/frameworks/JavaScript/Cypress" },
         { "$ref": "#/$defs/frameworks/JavaScript/Jest" },
         { "$ref": "#/$defs/frameworks/other" }
       ]
@@ -55,6 +56,14 @@
         }
       },
       "JavaScript": {
+        "Cypress": {
+          "type": "object",
+          "required": ["language", "kind"],
+          "properties": {
+            "language": { "type": "string", "enum": ["JavaScript"]},
+            "kind": { "type": "string", "enum": ["Cypress"]}
+          }
+        },
         "Jest": {
           "type": "object",
           "required": ["language", "kind"],
