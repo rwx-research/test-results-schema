@@ -32,6 +32,7 @@
         { "$ref": "#/$defs/frameworks/.NET/xUnit" },
         { "$ref": "#/$defs/frameworks/JavaScript/Cypress" },
         { "$ref": "#/$defs/frameworks/JavaScript/Jest" },
+        { "$ref": "#/$defs/frameworks/JavaScript/Mocha" },
         { "$ref": "#/$defs/frameworks/other" }
       ]
     },
@@ -52,6 +53,7 @@
             "language": { "type": "string", "enum": ["Ruby"]},
             "kind": { "type": "string", "enum": ["Cucumber"]}
           }
+        }
       },
       ".NET": {
         "xUnit": {
@@ -78,6 +80,14 @@
           "properties": {
             "language": { "type": "string", "enum": ["JavaScript"]},
             "kind": { "type": "string", "enum": ["Jest"]}
+          }
+        },
+        "Mocha": {
+          "type": "object",
+          "required": ["language", "kind"],
+          "properties": {
+            "language": { "type": "string", "enum": ["JavaScript"]},
+            "kind": { "type": "string", "enum": ["Mocha"]}
           }
         }
       },
