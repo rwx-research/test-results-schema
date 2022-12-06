@@ -28,6 +28,7 @@
       "description": "The test framework which produced these results",
       "oneOf": [
         { "$ref": "#/$defs/frameworks/Ruby/RSpec" },
+        { "$ref": "#/$defs/frameworks/Ruby/Cucumber" },
         { "$ref": "#/$defs/frameworks/.NET/xUnit" },
         { "$ref": "#/$defs/frameworks/JavaScript/Cypress" },
         { "$ref": "#/$defs/frameworks/JavaScript/Jest" },
@@ -43,7 +44,14 @@
             "language": { "type": "string", "enum": ["Ruby"]},
             "kind": { "type": "string", "enum": ["RSpec"]}
           }
-        }
+        },
+        "Cucumber": {
+          "type": "object",
+          "required": ["language", "kind"],
+          "properties": {
+            "language": { "type": "string", "enum": ["Ruby"]},
+            "kind": { "type": "string", "enum": ["Cucumber"]}
+          }
       },
       ".NET": {
         "xUnit": {
