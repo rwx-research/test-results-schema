@@ -27,34 +27,17 @@
     "framework": {
       "description": "The test framework which produced these results",
       "oneOf": [
-        { "$ref": "#/$defs/frameworks/Ruby/RSpec" },
-        { "$ref": "#/$defs/frameworks/Ruby/Cucumber" },
         { "$ref": "#/$defs/frameworks/.NET/xUnit" },
         { "$ref": "#/$defs/frameworks/JavaScript/Cypress" },
         { "$ref": "#/$defs/frameworks/JavaScript/Jest" },
         { "$ref": "#/$defs/frameworks/JavaScript/Mocha" },
+        { "$ref": "#/$defs/frameworks/Python/pytest" },
+        { "$ref": "#/$defs/frameworks/Ruby/Cucumber" },
+        { "$ref": "#/$defs/frameworks/Ruby/RSpec" },
         { "$ref": "#/$defs/frameworks/other" }
       ]
     },
     "frameworks": {
-      "Ruby": {
-        "RSpec": {
-          "type": "object",
-          "required": ["language", "kind"],
-          "properties": {
-            "language": { "type": "string", "enum": ["Ruby"]},
-            "kind": { "type": "string", "enum": ["RSpec"]}
-          }
-        },
-        "Cucumber": {
-          "type": "object",
-          "required": ["language", "kind"],
-          "properties": {
-            "language": { "type": "string", "enum": ["Ruby"]},
-            "kind": { "type": "string", "enum": ["Cucumber"]}
-          }
-        }
-      },
       ".NET": {
         "xUnit": {
           "type": "object",
@@ -88,6 +71,34 @@
           "properties": {
             "language": { "type": "string", "enum": ["JavaScript"]},
             "kind": { "type": "string", "enum": ["Mocha"]}
+          }
+        }
+      },
+      "Python": {
+        "pytest": {
+          "type": "object",
+          "required": ["language", "kind"],
+          "properties": {
+            "language": { "type": "string", "enum": ["Python"]},
+            "kind": { "type": "string", "enum": ["pytest"]}
+          }
+        }
+      },
+      "Ruby": {
+        "RSpec": {
+          "type": "object",
+          "required": ["language", "kind"],
+          "properties": {
+            "language": { "type": "string", "enum": ["Ruby"]},
+            "kind": { "type": "string", "enum": ["RSpec"]}
+          }
+        },
+        "Cucumber": {
+          "type": "object",
+          "required": ["language", "kind"],
+          "properties": {
+            "language": { "type": "string", "enum": ["Ruby"]},
+            "kind": { "type": "string", "enum": ["Cucumber"]}
           }
         }
       },
