@@ -11,6 +11,10 @@
       "type": "array",
       "items": { "$ref": "./v1/test.json" }
     },
+    "meta": {
+      "description": "Additional framework/library-specific metadata",
+      "type": "object"
+    },
     "otherErrors": {
       "description": "Other errors which ocurred outside of a test",
       "type": "array",
