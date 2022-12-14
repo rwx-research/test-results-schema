@@ -33,6 +33,7 @@
       "oneOf": [
         { "$ref": "#/$defs/frameworks/.NET/xUnit" },
         { "$ref": "#/$defs/frameworks/Go/go test" },
+        { "$ref": "#/$defs/frameworks/Go/Ginkgo" },
         { "$ref": "#/$defs/frameworks/JavaScript/Cypress" },
         { "$ref": "#/$defs/frameworks/JavaScript/Jest" },
         { "$ref": "#/$defs/frameworks/JavaScript/Mocha" },
@@ -54,6 +55,14 @@
         }
       },
       "Go": {
+        "Ginkgo": {
+          "type": "object",
+          "required": ["language", "kind"],
+          "properties": {
+            "language": { "type": "string", "enum": ["Go"]},
+            "kind": { "type": "string", "enum": ["Ginkgo"]}
+          }
+        },
         "go test": {
           "type": "object",
           "required": ["language", "kind"],
