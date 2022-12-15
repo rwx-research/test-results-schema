@@ -37,6 +37,7 @@
         { "$ref": "#/$defs/frameworks/JavaScript/Cypress" },
         { "$ref": "#/$defs/frameworks/JavaScript/Jest" },
         { "$ref": "#/$defs/frameworks/JavaScript/Mocha" },
+        { "$ref": "#/$defs/frameworks/JavaScript/Playwright" },
         { "$ref": "#/$defs/frameworks/Python/pytest" },
         { "$ref": "#/$defs/frameworks/Ruby/Cucumber" },
         { "$ref": "#/$defs/frameworks/Ruby/RSpec" },
@@ -95,6 +96,14 @@
           "properties": {
             "language": { "type": "string", "enum": ["JavaScript"]},
             "kind": { "type": "string", "enum": ["Mocha"]}
+          }
+        },
+        "Playwright": {
+          "type": "object",
+          "required": ["language", "kind"],
+          "properties": {
+            "language": { "type": "string", "enum": ["JavaScript"]},
+            "kind": { "type": "string", "enum": ["Playwright"]}
           }
         }
       },
