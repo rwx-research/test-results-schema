@@ -41,6 +41,7 @@
         { "$ref": "#/$defs/frameworks/PHP/PHPUnit" },
         { "$ref": "#/$defs/frameworks/Python/pytest" },
         { "$ref": "#/$defs/frameworks/Ruby/Cucumber" },
+        { "$ref": "#/$defs/frameworks/Ruby/minitest" },
         { "$ref": "#/$defs/frameworks/Ruby/RSpec" },
         { "$ref": "#/$defs/frameworks/other" }
       ]
@@ -129,20 +130,28 @@
         }
       },
       "Ruby": {
-        "RSpec": {
-          "type": "object",
-          "required": ["language", "kind"],
-          "properties": {
-            "language": { "type": "string", "enum": ["Ruby"]},
-            "kind": { "type": "string", "enum": ["RSpec"]}
-          }
-        },
         "Cucumber": {
           "type": "object",
           "required": ["language", "kind"],
           "properties": {
             "language": { "type": "string", "enum": ["Ruby"]},
             "kind": { "type": "string", "enum": ["Cucumber"]}
+          }
+        },
+        "minitest": {
+          "type": "object",
+          "required": ["language", "kind"],
+          "properties": {
+            "language": { "type": "string", "enum": ["Ruby"]},
+            "kind": { "type": "string", "enum": ["minitest"]}
+          }
+        },
+        "RSpec": {
+          "type": "object",
+          "required": ["language", "kind"],
+          "properties": {
+            "language": { "type": "string", "enum": ["Ruby"]},
+            "kind": { "type": "string", "enum": ["RSpec"]}
           }
         }
       },
