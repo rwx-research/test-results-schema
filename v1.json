@@ -36,6 +36,7 @@
         { "$ref": "#/$defs/frameworks/Go/Ginkgo" },
         { "$ref": "#/$defs/frameworks/JavaScript/Cypress" },
         { "$ref": "#/$defs/frameworks/JavaScript/Jest" },
+        { "$ref": "#/$defs/frameworks/JavaScript/Karma" },
         { "$ref": "#/$defs/frameworks/JavaScript/Mocha" },
         { "$ref": "#/$defs/frameworks/JavaScript/Playwright" },
         { "$ref": "#/$defs/frameworks/PHP/PHPUnit" },
@@ -52,8 +53,8 @@
           "type": "object",
           "required": ["language", "kind"],
           "properties": {
-            "language": { "type": "string", "enum": [".NET"]},
-            "kind": { "type": "string", "enum": ["xUnit"]}
+            "language": { "type": "string", "enum": [".NET"] },
+            "kind": { "type": "string", "enum": ["xUnit"] }
           }
         }
       },
@@ -62,16 +63,16 @@
           "type": "object",
           "required": ["language", "kind"],
           "properties": {
-            "language": { "type": "string", "enum": ["Go"]},
-            "kind": { "type": "string", "enum": ["Ginkgo"]}
+            "language": { "type": "string", "enum": ["Go"] },
+            "kind": { "type": "string", "enum": ["Ginkgo"] }
           }
         },
         "go test": {
           "type": "object",
           "required": ["language", "kind"],
           "properties": {
-            "language": { "type": "string", "enum": ["Go"]},
-            "kind": { "type": "string", "enum": ["go test"]}
+            "language": { "type": "string", "enum": ["Go"] },
+            "kind": { "type": "string", "enum": ["go test"] }
           }
         }
       },
@@ -80,32 +81,40 @@
           "type": "object",
           "required": ["language", "kind"],
           "properties": {
-            "language": { "type": "string", "enum": ["JavaScript"]},
-            "kind": { "type": "string", "enum": ["Cypress"]}
+            "language": { "type": "string", "enum": ["JavaScript"] },
+            "kind": { "type": "string", "enum": ["Cypress"] }
           }
         },
         "Jest": {
           "type": "object",
           "required": ["language", "kind"],
           "properties": {
-            "language": { "type": "string", "enum": ["JavaScript"]},
-            "kind": { "type": "string", "enum": ["Jest"]}
+            "language": { "type": "string", "enum": ["JavaScript"] },
+            "kind": { "type": "string", "enum": ["Jest"] }
+          }
+        },
+        "Karma": {
+          "type": "object",
+          "required": ["language", "kind"],
+          "properties": {
+            "language": { "type": "string", "enum": ["JavaScript"] },
+            "kind": { "type": "string", "enum": ["Karma"] }
           }
         },
         "Mocha": {
           "type": "object",
           "required": ["language", "kind"],
           "properties": {
-            "language": { "type": "string", "enum": ["JavaScript"]},
-            "kind": { "type": "string", "enum": ["Mocha"]}
+            "language": { "type": "string", "enum": ["JavaScript"] },
+            "kind": { "type": "string", "enum": ["Mocha"] }
           }
         },
         "Playwright": {
           "type": "object",
           "required": ["language", "kind"],
           "properties": {
-            "language": { "type": "string", "enum": ["JavaScript"]},
-            "kind": { "type": "string", "enum": ["Playwright"]}
+            "language": { "type": "string", "enum": ["JavaScript"] },
+            "kind": { "type": "string", "enum": ["Playwright"] }
           }
         }
       },
@@ -114,8 +123,8 @@
           "type": "object",
           "required": ["language", "kind"],
           "properties": {
-            "language": { "type": "string", "enum": ["PHP"]},
-            "kind": { "type": "string", "enum": ["PHPUnit"]}
+            "language": { "type": "string", "enum": ["PHP"] },
+            "kind": { "type": "string", "enum": ["PHPUnit"] }
           }
         }
       },
@@ -124,8 +133,8 @@
           "type": "object",
           "required": ["language", "kind"],
           "properties": {
-            "language": { "type": "string", "enum": ["Python"]},
-            "kind": { "type": "string", "enum": ["pytest"]}
+            "language": { "type": "string", "enum": ["Python"] },
+            "kind": { "type": "string", "enum": ["pytest"] }
           }
         }
       },
@@ -134,24 +143,24 @@
           "type": "object",
           "required": ["language", "kind"],
           "properties": {
-            "language": { "type": "string", "enum": ["Ruby"]},
-            "kind": { "type": "string", "enum": ["Cucumber"]}
+            "language": { "type": "string", "enum": ["Ruby"] },
+            "kind": { "type": "string", "enum": ["Cucumber"] }
           }
         },
         "minitest": {
           "type": "object",
           "required": ["language", "kind"],
           "properties": {
-            "language": { "type": "string", "enum": ["Ruby"]},
-            "kind": { "type": "string", "enum": ["minitest"]}
+            "language": { "type": "string", "enum": ["Ruby"] },
+            "kind": { "type": "string", "enum": ["minitest"] }
           }
         },
         "RSpec": {
           "type": "object",
           "required": ["language", "kind"],
           "properties": {
-            "language": { "type": "string", "enum": ["Ruby"]},
-            "kind": { "type": "string", "enum": ["RSpec"]}
+            "language": { "type": "string", "enum": ["Ruby"] },
+            "kind": { "type": "string", "enum": ["RSpec"] }
           }
         }
       },
@@ -159,10 +168,10 @@
         "type": "object",
         "required": ["language", "kind", "providedLanguage", "providedKind"],
         "properties": {
-          "language": { "type": "string", "enum": ["other"]},
-          "kind": { "type": "string", "enum": ["other"]},
-          "providedLanguage": { "type": "string"},
-          "providedKind": { "type": "string"}
+          "language": { "type": "string", "enum": ["other"] },
+          "kind": { "type": "string", "enum": ["other"] },
+          "providedLanguage": { "type": "string" },
+          "providedKind": { "type": "string" }
         }
       }
     }
