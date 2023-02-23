@@ -41,6 +41,7 @@
         { "$ref": "#/$defs/frameworks/JavaScript/Playwright" },
         { "$ref": "#/$defs/frameworks/PHP/PHPUnit" },
         { "$ref": "#/$defs/frameworks/Python/pytest" },
+        { "$ref": "#/$defs/frameworks/Python/unittest" },
         { "$ref": "#/$defs/frameworks/Ruby/Cucumber" },
         { "$ref": "#/$defs/frameworks/Ruby/minitest" },
         { "$ref": "#/$defs/frameworks/Ruby/RSpec" },
@@ -135,6 +136,14 @@
           "properties": {
             "language": { "type": "string", "enum": ["Python"] },
             "kind": { "type": "string", "enum": ["pytest"] }
+          }
+        },
+        "unittest": {
+          "type": "object",
+          "required": ["language", "kind"],
+          "properties": {
+            "language": { "type": "string", "enum": ["Python"] },
+            "kind": { "type": "string", "enum": ["unittest"] }
           }
         }
       },
