@@ -32,6 +32,7 @@
       "description": "The test framework which produced these results",
       "oneOf": [
         { "$ref": "#/$defs/frameworks/.NET/xUnit" },
+        { "$ref": "#/$defs/frameworks/Elixir/ExUnit" },
         { "$ref": "#/$defs/frameworks/Go/go test" },
         { "$ref": "#/$defs/frameworks/Go/Ginkgo" },
         { "$ref": "#/$defs/frameworks/JavaScript/Cypress" },
@@ -56,6 +57,16 @@
           "properties": {
             "language": { "type": "string", "enum": [".NET"] },
             "kind": { "type": "string", "enum": ["xUnit"] }
+          }
+        }
+      },
+      "Elixir": {
+        "ExUnit": {
+          "type": "object",
+          "required": ["language", "kind"],
+          "properties": {
+            "language": { "type": "string", "enum": ["Elixir"] },
+            "kind": { "type": "string", "enum": ["ExUnit"] }
           }
         }
       },
