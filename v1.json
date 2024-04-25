@@ -35,6 +35,7 @@
         { "$ref": "#/$defs/frameworks/Elixir/ExUnit" },
         { "$ref": "#/$defs/frameworks/Go/go test" },
         { "$ref": "#/$defs/frameworks/Go/Ginkgo" },
+        { "$ref": "#/$defs/frameworks/JavaScript/Cucumber" },
         { "$ref": "#/$defs/frameworks/JavaScript/Cypress" },
         { "$ref": "#/$defs/frameworks/JavaScript/Jest" },
         { "$ref": "#/$defs/frameworks/JavaScript/Karma" },
@@ -89,6 +90,14 @@
         }
       },
       "JavaScript": {
+        "Cucumber": {
+          "type": "object",
+          "required": ["language", "kind"],
+          "properties": {
+            "language": { "type": "string", "enum": ["JavaScript"] },
+            "kind": { "type": "string", "enum": ["Cucumber"] }
+          }
+        },
         "Cypress": {
           "type": "object",
           "required": ["language", "kind"],
