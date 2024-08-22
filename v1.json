@@ -41,6 +41,7 @@
         { "$ref": "#/$defs/frameworks/JavaScript/Karma" },
         { "$ref": "#/$defs/frameworks/JavaScript/Mocha" },
         { "$ref": "#/$defs/frameworks/JavaScript/Playwright" },
+        { "$ref": "#/$defs/frameworks/JavaScript/Vitest" },
         { "$ref": "#/$defs/frameworks/PHP/PHPUnit" },
         { "$ref": "#/$defs/frameworks/Python/pytest" },
         { "$ref": "#/$defs/frameworks/Python/unittest" },
@@ -136,6 +137,14 @@
           "properties": {
             "language": { "type": "string", "enum": ["JavaScript"] },
             "kind": { "type": "string", "enum": ["Playwright"] }
+          }
+        },
+        "Vitest": {
+          "type": "object",
+          "required": ["language", "kind"],
+          "properties": {
+            "language": { "type": "string", "enum": ["JavaScript"] },
+            "kind": { "type": "string", "enum": ["Vitest"] }
           }
         }
       },
