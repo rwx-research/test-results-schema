@@ -6,6 +6,7 @@
   "properties": {
     "id": { "$ref": "#/$defs/id" },
     "name": { "$ref": "#/$defs/name" },
+    "scope": { "$ref": "#/$defs/scope" },
     "lineage": { "$ref": "#/$defs/lineage" },
     "location": { "$ref": "#/$defs/location" },
     "attempt": { "$ref": "#/$defs/attempt" },
@@ -84,6 +85,11 @@
       "examples": ["Sky::Moon when it's dark out is bright"],
       "type": "string",
       "minLength": 1
+    },
+    "scope": {
+      "description": "A string representation of any additional scoping to differentiate this test from others with the same name and location (e.g. a playwright project)",
+      "examples": ["chrome", "firefox", "safari"],
+      "type": "string"
     },
     "startedAt": {
       "description": "When the test started",
