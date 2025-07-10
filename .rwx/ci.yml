@@ -1,0 +1,33 @@
+on:
+  github:
+    push:
+      init:
+        sha: ${{ event.git.sha }}
+
+base:
+  os: ubuntu 24.04
+  tag: 1.1
+
+tasks:
+  - key: code
+    call: git/clone 1.6.7
+    with:
+      repository: https://github.com/rwx-research/test-results-schema.git
+      ref: ${{ init.sha }}
+
+  - key: golang
+    call: golang/install 1.1.3
+    with:
+      go-version: 1.19.2
+
+  - key: jsonschema
+    use: golang
+    run: go install github.com/santhosh-tekuri/jsonschema/v5/cmd/jv@v5.0.1
+
+  - key: verify
+    use: [code, jsonschema]
+    run: /home/ubuntu/go/bin/jv -assertformat v1.json v1-sample.json
+    filter:
+      - v1
+      - v1.json
+      - v1-sample.json
