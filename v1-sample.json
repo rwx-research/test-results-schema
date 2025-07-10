@@ -16,17 +16,14 @@
     "skipped": 0,
     "successful": 1,
     "timedOut": 0,
-    "todo": 0
+    "todo": 0,
+    "flaky": 1
   },
   "tests": [
     {
       "id": "./spec/some/path/foo_spec.rb:12",
       "name": "Sky::Moon when it's dark out is bright",
-      "lineage": [
-        "Sky::Moon",
-        "when it's dark out",
-        "is bright"
-      ],
+      "lineage": ["Sky::Moon", "when it's dark out", "is bright"],
       "location": {
         "file": "./spec/some/path/foo_spec.rb",
         "line": 12
@@ -41,11 +38,7 @@
     {
       "id": "./spec/some/path/foo_spec.rb:20",
       "name": "Sky::Moon when it's dark out is not bright",
-      "lineage": [
-        "Sky::Moon",
-        "when it's dark out",
-        "is not bright"
-      ],
+      "lineage": ["Sky::Moon", "when it's dark out", "is not bright"],
       "location": {
         "file": "./spec/some/path/foo_spec.rb",
         "line": 20
