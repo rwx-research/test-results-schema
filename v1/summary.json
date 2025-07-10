@@ -29,7 +29,8 @@
       "skipped": 0,
       "successful": 1,
       "timedOut": 0,
-      "todo": 0
+      "todo": 0,
+      "flaky": 1
     }
   ],
   "properties": {
@@ -37,6 +38,7 @@
     "tests": { "$ref": "#/$defs/tests" },
     "otherErrors": { "$ref": "#/$defs/otherErrors" },
     "retries": { "$ref": "#/$defs/retries" },
+    "flaky": { "$ref": "#/$defs/flaky" },
     "canceled": { "$ref": "#/$defs/statusAggregate" },
     "failed": { "$ref": "#/$defs/statusAggregate" },
     "pended": { "$ref": "#/$defs/statusAggregate" },
@@ -55,6 +57,11 @@
     },
     "retries": {
       "description": "The number of tests that were retried (i.e. the number of tests with pastAttempts)",
+      "type": "number",
+      "minimum": 0
+    },
+    "flaky": {
+      "description": "The number of tests that were failed and then were successful after retry",
       "type": "number",
       "minimum": 0
     },
