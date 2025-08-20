@@ -22,7 +22,9 @@
       "description": "Details about a single attempt of a test",
       "type": "object",
       "required": ["durationInNanoseconds", "status"],
-      "examples": [{ "durationInNanoseconds": 2500000000, "status": { "kind": "failed" } }],
+      "examples": [
+        { "durationInNanoseconds": 2500000000, "status": { "kind": "failed" } }
+      ],
       "properties": {
         "durationInNanoseconds": { "$ref": "#/$defs/durationInNanoseconds" },
         "meta": { "$ref": "#/$defs/meta" },
@@ -155,7 +157,12 @@
         "description": "A timed out test",
         "type": "object",
         "required": ["kind"],
-        "properties": { "kind": { "type": "string", "enum": ["timedOut"] } }
+        "properties": {
+          "kind": { "type": "string", "enum": ["timedOut"] },
+          "exception": { "type": "string" },
+          "message": { "type": "string" },
+          "backtrace": { "type": "array", "items": { "type": "string" } }
+        }
       },
       "todo": {
         "description": "A test that has not yet been implemented",
