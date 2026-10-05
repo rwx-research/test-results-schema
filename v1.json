@@ -43,6 +43,7 @@
         { "$ref": "#/$defs/frameworks/JavaScript/Playwright" },
         { "$ref": "#/$defs/frameworks/JavaScript/Vitest" },
         { "$ref": "#/$defs/frameworks/PHP/PHPUnit" },
+        { "$ref": "#/$defs/frameworks/PHP/Pest" },
         { "$ref": "#/$defs/frameworks/Python/pytest" },
         { "$ref": "#/$defs/frameworks/Python/unittest" },
         { "$ref": "#/$defs/frameworks/Ruby/Cucumber" },
@@ -155,6 +156,14 @@
           "properties": {
             "language": { "type": "string", "enum": ["PHP"] },
             "kind": { "type": "string", "enum": ["PHPUnit"] }
+          }
+        },
+        "Pest": {
+          "type": "object",
+          "required": ["language", "kind"],
+          "properties": {
+            "language": { "type": "string", "enum": ["PHP"] },
+            "kind": { "type": "string", "enum": ["Pest"] }
           }
         }
       },
