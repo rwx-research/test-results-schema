@@ -3,6 +3,9 @@ on:
     push:
       init:
         sha: ${{ event.git.sha }}
+  cli:
+    init:
+      sha: ${{ event.git.sha }}
 
 base:
   os: ubuntu 24.04
@@ -10,7 +13,7 @@ base:
 
 tasks:
   - key: code
-    call: git/clone 1.6.7
+    call: git/clone 2.2.0
     with:
       repository: https://github.com/rwx-research/test-results-schema.git
       ref: ${{ init.sha }}
@@ -26,7 +29,35 @@ tasks:
 
   - key: verify
     use: [code, jsonschema]
-    run: /home/ubuntu/go/bin/jv -assertformat v1.json v1-sample.json
+    run: |
+      /home/ubuntu/go/bin/jv -assertformat v1.json v1-sample.json
+      python3 - <<'PY'
+      import json
+      import subprocess
+      import tempfile
+
+      with open("v1-sample.json") as sample:
+          results = json.load(sample)
+      for framework, expected_status in [
+          ({"language": "PHP", "kind": "Pest"}, 0),
+          ({"language": "PHP", "kind": "PHPUnit"}, 0),
+          ({"language": "PHP", "kind": "pest"}, 1),
+          ({"language": "Ruby", "kind": "Pest"}, 1),
+          ({"language": "PHP"}, 1),
+          ({"kind": "Pest"}, 1),
+      ]:
+          results["framework"] = framework
+          with tempfile.NamedTemporaryFile(mode="w+", suffix=".json") as fixture:
+              json.dump(results, fixture)
+              fixture.flush()
+              validation = subprocess.run(
+                  ["/home/ubuntu/go/bin/jv", "-assertformat", "v1.json", fixture.name],
+                  capture_output=True, text=True,
+              )
+          if validation.returncode != expected_status:
+              raise SystemExit(f"Unexpected validation result for {framework}: {validation.stdout}{validation.stderr}")
+          print(f"PASS: {framework} {'accepted' if expected_status == 0 else 'rejected'}")
+      PY
     filter:
       - v1
       - v1.json
